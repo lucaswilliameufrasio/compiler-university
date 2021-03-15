@@ -9,9 +9,10 @@ public enum Tag {
 	OR("OR"), AND("AND"), NOT("NOT"),
 	// Relational Operators
 	LT("LT"), LE("LE"), GT("GT"), GE("GE"), NE("NE"),
-	// Others
+	//Symbols
 	LPAREN("LPAREN"), RPAREN("RPAREN"),
 	COMMA("COMMA"), SEMI("SEMI"),
+	// Others
 	// EOF = End of File
 	// UNK = Unknown Pattern
 	EOF("EOF"), UNK("UNK");
