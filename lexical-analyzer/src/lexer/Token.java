@@ -20,7 +20,7 @@ public class Token {
 	@Override
 	public String toString() {
 		// The token ASSIGN will be printed
-		// with that format: <ASSIGN, 'ASSIGN'>
+		// with that format: <ASSIGN, '='>
 		return "<" + tag + ", '" + lexeme + "'>";
 	}
 
