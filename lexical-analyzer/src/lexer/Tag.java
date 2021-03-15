@@ -14,6 +14,8 @@ public enum Tag {
 	COMMA("COMMA"), SEMI("SEMI"),
 	//Literals
 	LINT_INT("LINT_INT"), LINT_REAL("LINT_REAL"),
+	//Identifiers
+	ID("ID"),
 	// Others
 	// EOF = End of File
 	// UNK = Unknown Pattern
