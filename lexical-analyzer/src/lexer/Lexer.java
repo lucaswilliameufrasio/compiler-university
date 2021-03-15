@@ -59,9 +59,34 @@ public class Lexer {
 		case '*':
 			nextChar();
 			return new Token(Tag.MUL, "*");
+		case '/':
+			nextChar();
+			return new Token(Tag.DIV, "/");
 		case '|':
 			nextChar();
 			return new Token(Tag.OR, "|");
+		case '&':
+			nextChar();
+			return new Token(Tag.AND, "&");
+		case '(':
+			nextChar();
+			return new Token(Tag.LPAREN, "(");
+		case ')':
+			nextChar();
+			return new Token(Tag.RPAREN, ")");
+		case ',':
+			nextChar();
+			return new Token(Tag.COMMA, ",");
+		case ';':
+			nextChar();
+			return new Token(Tag.SEMI, ";");
+		case '!':
+			nextChar();
+			if (peek == '=') {
+				nextChar();
+				return new Token(Tag.NE, "!=");
+			}
+			return new Token(Tag.NOT, "!");
 		case '<':
 			nextChar();
 			if (peek == '=') {
@@ -71,6 +96,10 @@ public class Lexer {
 			return new Token(Tag.LT, "<");
 		case '>':
 			nextChar();
+			if (peek == '=') {
+				nextChar();
+				return new Token(Tag.GE, ">=");
+			}
 			return new Token(Tag.GT, ">");
 		case EOF_CHAR:
 			return new Token(Tag.EOF, "");
