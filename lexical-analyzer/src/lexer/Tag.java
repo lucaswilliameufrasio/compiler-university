@@ -13,7 +13,7 @@ public enum Tag {
 	LPAREN("LPAREN"), RPAREN("RPAREN"),
 	COMMA("COMMA"), SEMI("SEMI"),
 	//Literals
-	LINT_INT("LINT_INT"),
+	LINT_INT("LINT_INT"), LINT_REAL("LINT_REAL"),
 	// Others
 	// EOF = End of File
 	// UNK = Unknown Pattern
