@@ -113,6 +113,13 @@ public class Lexer {
 					num += peek;
 					nextChar();
 				} while (Character.isDigit(peek));
+				if (peek == '.') {
+					do {
+						num += peek;
+						nextChar();
+					} while (Character.isDigit(peek));
+					return new Token(Tag.LINT_REAL, num);
+				}
 				return new Token(Tag.LINT_INT, num);
 			}
 		}
