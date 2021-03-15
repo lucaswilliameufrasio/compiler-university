@@ -4,12 +4,14 @@ public enum Tag {
 	// Assign
 	ASSIGN("ASSIGN"),
 	// Arithmetical Operators
-	SUM("SUM"), SUB("SUB"), MUL("MUL"),
+	SUM("SUM"), SUB("SUB"), MUL("MUL"), DIV("DIV"),
 	// Logical Operators
-	OR("OR"),
+	OR("OR"), AND("AND"), NOT("NOT"),
 	// Relational Operators
-	LT("LT"), LE("LE"), GT("GT"),
+	LT("LT"), LE("LE"), GT("GT"), GE("GE"), NE("NE"),
 	// Others
+	LPAREN("LPAREN"), RPAREN("RPAREN"),
+	COMMA("COMMA"), SEMI("SEMI"),
 	// EOF = End of File
 	// UNK = Unknown Pattern
 	EOF("EOF"), UNK("UNK");
