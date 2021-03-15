@@ -12,6 +12,8 @@ public enum Tag {
 	//Symbols
 	LPAREN("LPAREN"), RPAREN("RPAREN"),
 	COMMA("COMMA"), SEMI("SEMI"),
+	//Literals
+	LINT_INT("LINT_INT"),
 	// Others
 	// EOF = End of File
 	// UNK = Unknown Pattern
