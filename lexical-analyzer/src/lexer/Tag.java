@@ -1,6 +1,9 @@
 package lexer;
 
 public enum Tag {
+	// Reserved Words
+	PROGRAM("PROGRAM"),
+	BEGIN("BEGIN"), END("END"),
 	// Assign
 	ASSIGN("ASSIGN"),
 	// Arithmetical Operators
