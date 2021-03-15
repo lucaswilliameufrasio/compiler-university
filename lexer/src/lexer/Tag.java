@@ -4,12 +4,14 @@ public enum Tag {
 	// Assign
 	ASSIGN("ASSIGN"),
 	// Arithmetical Operators
-	SUM("SUM"), MUL("MUL"),
+	SUM("SUM"), SUB("SUB"), MUL("MUL"),
 	// Logical Operators
 	OR("OR"),
 	// Relational Operators
 	LT("LT"), LE("LE"), GT("GT"),
 	// Others
+	// EOF = End of File
+	// UNK = Unknown Pattern
 	EOF("EOF"), UNK("UNK");
 	
 	private String name;
