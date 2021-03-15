@@ -37,7 +37,9 @@ public class Lexer {
 
 	private static boolean isWhitespace(int c) {
 		switch (c) {
-		case ' ': case '\t': case '\n':
+		case ' ':
+		case '\t':
+		case '\n':
 			return true;
 		default:
 			return false;
@@ -45,8 +47,9 @@ public class Lexer {
 	}
 
 	public Token nextToken() {
-		while(isWhitespace(peek)) nextChar();
-		switch(peek) {
+		while (isWhitespace(peek))
+			nextChar();
+		switch (peek) {
 		case '=':
 			nextChar();
 			return new Token(Tag.ASSIGN, "=");
@@ -103,6 +106,15 @@ public class Lexer {
 			return new Token(Tag.GT, ">");
 		case EOF_CHAR:
 			return new Token(Tag.EOF, "");
+		default:
+			if (Character.isDigit(peek)) {
+				String num = "";
+				do {
+					num += peek;
+					nextChar();
+				} while (Character.isDigit(peek));
+				return new Token(Tag.LINT_INT, num);
+			}
 		}
 		String unk = String.valueOf(peek);
 		nextChar();
