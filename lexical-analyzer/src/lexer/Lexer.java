@@ -46,6 +46,14 @@ public class Lexer {
 		}
 	}
 
+	private static boolean isIdStart(int c) {
+		return (Character.isAlphabetic(c) || c == '_');
+	}
+	
+	private static boolean isIdPart(int c) {
+		return (isIdStart(c) || Character.isDigit(c));
+	}
+
 	public Token nextToken() {
 		while (isWhitespace(peek))
 			nextChar();
@@ -121,6 +129,13 @@ public class Lexer {
 					return new Token(Tag.LINT_REAL, num);
 				}
 				return new Token(Tag.LINT_INT, num);
+			} else if (isIdStart(peek)) {
+				String id = "";
+				do {
+					id += peek;
+					nextChar();
+				} while(isIdPart(peek));
+				return new Token(Tag.ID, id);
 			}
 		}
 		String unk = String.valueOf(peek);
