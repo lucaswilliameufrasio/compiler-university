@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Hashtable;
+import java.util.concurrent.Callable;
 
 public class Lexer {
 	private static final char EOF_CHAR = (char) -1;
@@ -85,6 +86,12 @@ public class Lexer {
 			return new Token(Tag.MUL, "*");
 		case '/':
 			nextChar();
+			if (peek == '*') {
+				while (peek != '/')
+					nextChar();
+				nextChar();
+				break;
+			}
 			return new Token(Tag.DIV, "/");
 		case '|':
 			nextChar();
