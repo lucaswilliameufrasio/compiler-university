@@ -68,6 +68,9 @@ public class Parser {
 		case IF:
 			ifStmt();
 			break;
+		case WRITE:
+			writeStmt();
+			break;
 		default:
 			error("Comando inválido");
 		}
@@ -147,5 +150,12 @@ public class Parser {
 		expr();
 		match(Tag.RPAREN);
 		stmt();
+	}
+	
+	private void writeStmt() {
+		move();
+		match(Tag.LPAREN);
+		match(Tag.ID);
+		match(Tag.RPAREN);
 	}
 }
