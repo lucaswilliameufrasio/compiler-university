@@ -65,6 +65,9 @@ public class Parser {
 		case ID:
 			assign();
 			break;
+		case IF:
+			ifStmt();
+			break;
 		default:
 			error("Comando inválido");
 		}
@@ -136,5 +139,13 @@ public class Parser {
 		default:
 			error("expressão inválida");
 		}
+	}
+	
+	private void ifStmt() {
+		match(Tag.IF);
+		match(Tag.LPAREN);
+		expr();
+		match(Tag.RPAREN);
+		stmt();
 	}
 }
