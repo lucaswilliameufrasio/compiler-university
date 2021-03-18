@@ -1,6 +1,5 @@
 package expr;
 
-
 import inter.Node;
 import lexer.Tag;
 import lexer.Token;
@@ -21,7 +20,7 @@ public class Expr extends Node {
 	public Tag type() {
 		return type;
 	}
-	
+
 	@Override
 	public String toString() {
 		return op.tag().toString();
