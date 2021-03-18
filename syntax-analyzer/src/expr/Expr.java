@@ -1,10 +1,11 @@
 package expr;
 
-import javax.swing.text.html.HTML.Tag;
 
+import inter.Node;
+import lexer.Tag;
 import lexer.Token;
 
-public class Expr {
+public class Expr extends Node {
 	protected Token op;
 	protected Tag type;
 
