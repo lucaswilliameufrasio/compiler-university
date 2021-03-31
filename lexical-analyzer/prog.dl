@@ -1,5 +1,6 @@
 programa soma inicio
-	/*    Declarada a variável "a" */
+	/*    Declarada a variável "a" *//* dadas */
+	/*mais um comentário*/
 	inteiro a;
 	inteiro b;
 	inteiro c;

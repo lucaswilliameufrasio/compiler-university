@@ -69,99 +69,101 @@ public class Lexer {
 	}
 
 	public Token nextToken() {
-		while (isWhitespace(peek))
-			nextChar();
-		switch (peek) {
-		case '=':
-			nextChar();
-			return new Token(Tag.ASSIGN, "=");
-		case '+':
-			nextChar();
-			return new Token(Tag.SUM, "+");
-		case '-':
-			nextChar();
-			return new Token(Tag.SUB, "-");
-		case '*':
-			nextChar();
-			return new Token(Tag.MUL, "*");
-		case '/':
-			nextChar();
-			if (peek == '*') {
-				while (peek != '/')
+		while (true) {
+			while (isWhitespace(peek))
+				nextChar();
+			switch (peek) {
+			case '=':
+				nextChar();
+				return new Token(Tag.ASSIGN, "=");
+			case '+':
+				nextChar();
+				return new Token(Tag.SUM, "+");
+			case '-':
+				nextChar();
+				return new Token(Tag.SUB, "-");
+			case '*':
+				nextChar();
+				return new Token(Tag.MUL, "*");
+			case '/':
+				nextChar();
+				if (peek == '*') {
+					while (peek != '/')
+						nextChar();
 					nextChar();
+					continue;
+				}
+				return new Token(Tag.DIV, "/");
+			case '|':
 				nextChar();
-				break;
-			}
-			return new Token(Tag.DIV, "/");
-		case '|':
-			nextChar();
-			return new Token(Tag.OR, "|");
-		case '&':
-			nextChar();
-			return new Token(Tag.AND, "&");
-		case '(':
-			nextChar();
-			return new Token(Tag.LPAREN, "(");
-		case ')':
-			nextChar();
-			return new Token(Tag.RPAREN, ")");
-		case ',':
-			nextChar();
-			return new Token(Tag.COMMA, ",");
-		case ';':
-			nextChar();
-			return new Token(Tag.SEMI, ";");
-		case '!':
-			nextChar();
-			if (peek == '=') {
+				return new Token(Tag.OR, "|");
+			case '&':
 				nextChar();
-				return new Token(Tag.NE, "!=");
-			}
-			return new Token(Tag.NOT, "!");
-		case '<':
-			nextChar();
-			if (peek == '=') {
+				return new Token(Tag.AND, "&");
+			case '(':
 				nextChar();
-				return new Token(Tag.LE, "<=");
-			}
-			return new Token(Tag.LT, "<");
-		case '>':
-			nextChar();
-			if (peek == '=') {
+				return new Token(Tag.LPAREN, "(");
+			case ')':
 				nextChar();
-				return new Token(Tag.GE, ">=");
-			}
-			return new Token(Tag.GT, ">");
-		case EOF_CHAR:
-			return new Token(Tag.EOF, "");
-		default:
-			if (Character.isDigit(peek)) {
-				String num = "";
-				do {
-					num += peek;
+				return new Token(Tag.RPAREN, ")");
+			case ',':
+				nextChar();
+				return new Token(Tag.COMMA, ",");
+			case ';':
+				nextChar();
+				return new Token(Tag.SEMI, ";");
+			case '!':
+				nextChar();
+				if (peek == '=') {
 					nextChar();
-				} while (Character.isDigit(peek));
-				if (peek == '.') {
+					return new Token(Tag.NE, "!=");
+				}
+				return new Token(Tag.NOT, "!");
+			case '<':
+				nextChar();
+				if (peek == '=') {
+					nextChar();
+					return new Token(Tag.LE, "<=");
+				}
+				return new Token(Tag.LT, "<");
+			case '>':
+				nextChar();
+				if (peek == '=') {
+					nextChar();
+					return new Token(Tag.GE, ">=");
+				}
+				return new Token(Tag.GT, ">");
+			case EOF_CHAR:
+				return new Token(Tag.EOF, "");
+			default:
+				if (Character.isDigit(peek)) {
+					String num = "";
 					do {
 						num += peek;
 						nextChar();
 					} while (Character.isDigit(peek));
-					return new Token(Tag.LINT_REAL, num);
+					if (peek == '.') {
+						do {
+							num += peek;
+							nextChar();
+						} while (Character.isDigit(peek));
+						return new Token(Tag.LINT_REAL, num);
+					}
+					return new Token(Tag.LINT_INT, num);
+				} else if (isIdStart(peek)) {
+					String id = "";
+					do {
+						id += peek;
+						nextChar();
+					} while (isIdPart(peek));
+					if (keywords.containsKey(id))
+						return new Token(keywords.get(id), id);
+					return new Token(Tag.ID, id);
 				}
-				return new Token(Tag.LINT_INT, num);
-			} else if (isIdStart(peek)) {
-				String id = "";
-				do {
-					id += peek;
-					nextChar();
-				} while (isIdPart(peek));
-				if (keywords.containsKey(id))
-					return new Token(keywords.get(id), id);
-				return new Token(Tag.ID, id);
-			}
+			}	
+			String unk = String.valueOf(peek);
+			nextChar();
+			return new Token(Tag.UNK, unk);
 		}
-		String unk = String.valueOf(peek);
-		nextChar();
-		return new Token(Tag.UNK, unk);
 	}
 }
