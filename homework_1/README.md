@@ -1,7 +1,7 @@
 - Este projeto foi desenvolvido para o trabalho 1 da disciplina de Compiladores.
 
 - Requisitos
-  - JavaJRE 14
+  - Java JDK 14
   - Eclipse 2020-12 (4.18.0)
 
 - Para executar o programa você deve:
