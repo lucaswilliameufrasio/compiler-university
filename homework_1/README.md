@@ -13,4 +13,4 @@ Projects into Workspace
   - Clique em Finish
   - Clique com o botão direito em cima do arquivo Pow.java, localizado na pasta src do projeto homework_1 e depois em Run As -> Java Application
   
-Observação: Você pode alterar o valor de entrada trocando o que está na variável userInput pelo que deseja.
+Observação: Com o programa rodando, você precisa digitar a linguagem e pressionar a tecla Enter.
