@@ -11,3 +11,6 @@ Projects into Workspace
   - Clique em Browse
   - Selecione o arquivo team_2.zip
   - Clique em Finish
+  - Clique com o botão direito em cima do arquivo Pow.java e depois em Run As -> Java Application
+  
+Observação: Você pode alterar o valor de entrada trocando o que está na variável userInput pelo que deseja.
