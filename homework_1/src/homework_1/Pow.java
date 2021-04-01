@@ -1,5 +1,7 @@
 package homework_1;
 
+import java.util.Scanner;
+
 // E  → PE'
 // E' → +PE' | ϵ
 // P  → FP'
@@ -9,8 +11,9 @@ package homework_1;
 public class Pow extends ParserBase {
 
 	public static void main(String[] args) {
-		String userInput = "(a+(a**(a+(a**a))))";
-		new Pow(userInput).parse();
+		Scanner userInput = new Scanner(System.in);
+		new Pow(userInput.nextLine()).parse();
+		userInput.close();
 		System.out.println("Prefix: Sintaxe correta.");
 	}
 
