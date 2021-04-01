@@ -8,7 +8,7 @@ package homework_1;
 
 public class Pow extends ParserBase {
 
-	public static void main(String[] args) {		
+	public static void main(String[] args) {
 		new Pow("(a+(a**(a+(a**a))))").parse();
 		System.out.println("Prefix: Sintaxe correta.");
 	}
@@ -42,13 +42,7 @@ public class Pow extends ParserBase {
 	}
 
 	private void f() {
-		/*
-		 * if (lookahead() == '(') { match('('); e(); match(')'); } else if (lookahead()
-		 * == 'a') { match('a'); } else {
-		 * error("f()Erro de sintaxe: Expressão inválida."); }
-		 */
-		
-		switch(lookahead()) {
+		switch (lookahead()) {
 		case '(':
 			match('(');
 			e();
