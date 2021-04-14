@@ -5,5 +5,9 @@ programa soma inicio
   a = 5;
   b = 3;
   c = a + b;
+  
+  enquanto (a > b)
+  	b = b + 1;
+  
   escreva(c);
 fim.

@@ -16,6 +16,7 @@ import stmt.Decl;
 import stmt.If;
 import stmt.Program;
 import stmt.Stmt;
+import stmt.While;
 import stmt.Write;
 
 public class Parser {
@@ -87,6 +88,8 @@ public class Parser {
 			return assign();
 		case IF:
 			return ifStmt();
+		case WHILE:
+			return whileStmt();
 		case WRITE:
 			return writeStmt();
 		default:
@@ -182,6 +185,15 @@ public class Parser {
 		match(Tag.RPAREN);
 		Stmt s1 = stmt();
 		return new If(expr, s1);
+	}
+	
+	private Stmt whileStmt() {
+		match(Tag.WHILE);
+		match(Tag.LPAREN);
+		Expr expr = expr();
+		match(Tag.RPAREN);
+		Stmt s1 = stmt();
+		return new While(expr, s1);
 	}
 	
 	private Stmt writeStmt() {
