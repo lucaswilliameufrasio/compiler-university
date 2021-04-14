@@ -1,16 +1,35 @@
 package parser;
 
+import expr.Bin;
+import expr.Expr;
+import expr.Id;
+import expr.Literal;
+import expr.Or;
+import expr.Rel;
+import inter.Node;
 import lexer.Lexer;
 import lexer.Tag;
 import lexer.Token;
+import stmt.Assign;
+import stmt.Block;
+import stmt.Decl;
+import stmt.If;
+import stmt.Program;
+import stmt.Stmt;
+import stmt.Write;
 
 public class Parser {
 	private Lexer lexer;
 	private Token look;
+	private Node root;
 
 	public Parser(Lexer lex) {
 		lexer = lex;
 		move();
+	}
+	
+	public String parseTree() {
+		return root.strTree();
 	}
 
 	private Token move() {
@@ -32,130 +51,145 @@ public class Parser {
 	}
 
 	public void parse() {
-		program();
+		root = program();
 	}
 
-	private void program() {
+	private Program program() {
 		match(Tag.PROGRAM);
-		match(Tag.ID);
-		block();
+		Token tokenId = match(Tag.ID);
+		Stmt blck = block();
 		match(Tag.DOT);
 		match(Tag.EOF);
+		return new Program(tokenId, (Block)blck);
 	}
 
-	private void block() {
+	private Stmt block() {
+		Block bclk = new Block();
 		match(Tag.BEGIN);
 		while (look.tag() != Tag.END) {
-			stmt();
+			bclk.addStmt(stmt());
 			match(Tag.SEMI);
 		}
 		match(Tag.END);
+		
+		return bclk;
 	}
 
-	private void stmt() {
+	private Stmt stmt() {
 		switch (look.tag()) {
 		case BEGIN:
-			block();
-			break;
+			return block();
 		case INT:
 		case REAL:
 		case BOOL:
-			decl();
-			break;
+			return decl();
 		case ID:
-			assign();
-			break;
+			return assign();
 		case IF:
-			ifStmt();
-			break;
+			return ifStmt();
 		case WRITE:
-			writeStmt();
-			break;
+			return writeStmt();
 		default:
 			error("Comando inválido");
 		}
+		
+		return null;
 	}
 
-	private void decl() {
-		move();
-		match(Tag.ID);
+	private Stmt decl() {
+		Token type = move();
+		Token tokenId = match(Tag.ID);
+		Id id = new Id(tokenId, type.tag());
+		return new Decl(id);
 	}
 
-	private void assign() {
-		match(Tag.ID);
+	private Stmt assign() {
+		Token token = match(Tag.ID);
+		Id id = new Id(token, null);
 		match(Tag.ASSIGN);
-		expr();
+		Expr expr = expr();
+		return new Assign(id, expr);
 	}
 
-	private void expr() {
-		rel();
+	private Expr expr() {
+		Expr expr = rel();
 		while (look.tag() == Tag.OR) {
 			move();
-			rel();
+			expr = new Or(expr, rel());
 		}
+		return expr;
 	}
 
-	private void rel() {
-		arith();
+	private Expr rel() {
+		Expr expr = arith();
 		while (look.tag() == Tag.LT || look.tag() == Tag.LE || look.tag() == Tag.GT) {
-			move();
-			arith();
+			Token operation = move();
+			expr = new Rel(operation, expr, arith());
 		}
+		return expr;
 	}
 
-	private void arith() {
-		term();
+	private Expr arith() {
+		Expr expr = term();
 		while (look.tag() == Tag.SUM || look.tag() == Tag.SUB) {
-			move();
-			term();
+			Token operation = move();
+			expr = new Bin(operation, expr, term());
 		}
+		return expr;
 	}
 
-	private void term() {
-		factor();
+	private Expr term() {
+		Expr expr = factor();
 		while (look.tag() == Tag.MUL) {
-			move();
-			factor();
+			Token operation = move();
+			expr = new Bin(operation, expr, factor());
 		}
+		return expr;
 	}
 
-	private void factor() {
+	private Expr factor() {
+		Expr expr = null;
 		switch (look.tag()) {
 		case LPAREN:
 			move();
-			expr();
+			expr = expr();
 			match(Tag.RPAREN);
 			break;
 		case LIT_INT:
-			move();
+			expr = new Literal(move(), Tag.INT);
 			break;
 		case LIT_REAL:
-			move();
+			expr = new Literal(move(), Tag.REAL);
 			break;
 		case TRUE:
 		case FALSE:
-			move();
+			expr = new Literal(move(), Tag.BOOL);
 			break;
 		case ID:
-			match(Tag.ID);
+			Token token = match(Tag.ID);
+			expr = new Id(token, null);
 			break;
 		default:
 			error("expressão inválida");
 		}
+		return expr;
 	}
 	
-	private void ifStmt() {
+	private Stmt ifStmt() {
 		match(Tag.IF);
 		match(Tag.LPAREN);
-		expr();
+		Expr expr = expr();
 		match(Tag.RPAREN);
-		stmt();
+		Stmt s1 = stmt();
+		return new If(expr, s1);
 	}
 	
-	private void writeStmt() {
+	private Stmt writeStmt() {
 		move();
 		match(Tag.LPAREN);
-		match(Tag.ID);
+		Token token = match(Tag.ID);
+		Id id = new Id(token, null);
 		match(Tag.RPAREN);
+		return new Write(id);
 	}
 }

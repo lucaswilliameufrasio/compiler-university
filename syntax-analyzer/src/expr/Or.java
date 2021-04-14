@@ -7,7 +7,7 @@ public class Or extends Expr {
 	protected Expr expr1;
 	protected Expr expr2;
 	
-	public Or(Token op, Expr e1, Expr e2) {
+	public Or(Expr e1, Expr e2) {
 		super(new Token(Tag.OR, "|"), Tag.BOOL);
 		expr1 = e1;
 		expr2 = e2;

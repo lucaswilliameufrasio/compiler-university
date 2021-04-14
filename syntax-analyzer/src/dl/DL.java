@@ -9,9 +9,13 @@ import parser.Parser;
 
 public class DL {
 	public static void main(String[] args) {
+		// Analysis
 		Lexer l = new Lexer(new File("prog.dl"));
 		Parser p = new Parser(l);
 		p.parse();
+		
+		// Print the syntatic tree
+		System.out.println(p.parseTree());
 		System.out.println("finalizado");
 	}
 }
