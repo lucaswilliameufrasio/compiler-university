@@ -15,6 +15,7 @@ import stmt.Block;
 import stmt.Decl;
 import stmt.If;
 import stmt.Program;
+import stmt.Read;
 import stmt.Stmt;
 import stmt.While;
 import stmt.Write;
@@ -90,6 +91,8 @@ public class Parser {
 			return ifStmt();
 		case WHILE:
 			return whileStmt();
+		case READ:
+			return readStmt();
 		case WRITE:
 			return writeStmt();
 		default:
@@ -194,6 +197,15 @@ public class Parser {
 		match(Tag.RPAREN);
 		Stmt s1 = stmt();
 		return new While(expr, s1);
+	}
+	
+	private Stmt readStmt() {
+		move();
+		match(Tag.LPAREN);
+		Token token = match(Tag.ID);
+		Id id = new Id(token, null);
+		match(Tag.RPAREN);
+		return new Read(id);
 	}
 	
 	private Stmt writeStmt() {

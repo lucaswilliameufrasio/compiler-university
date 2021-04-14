@@ -1,7 +1,8 @@
 programa soma inicio
   inteiro a; 
   inteiro b;
-  inteiro c; 
+  inteiro c;
+  inteiro d;
   a = 5;
   b = 3;
   c = a + b;
@@ -9,5 +10,6 @@ programa soma inicio
   enquanto (a > b)
   	b = b + 1;
   
+  leia(d);
   escreva(c);
 fim.
