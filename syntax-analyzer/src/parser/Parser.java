@@ -5,6 +5,7 @@ import expr.Expr;
 import expr.Id;
 import expr.Literal;
 import expr.Or;
+import expr.Power;
 import expr.Rel;
 import inter.Node;
 import lexer.Lexer;
@@ -46,6 +47,7 @@ public class Parser {
 	}
 
 	private Token match(Tag t) {
+		System.out.println(look.tag());
 		if (look.tag() == t)
 			return move();
 		error("Símbolo inesperado");
@@ -145,10 +147,19 @@ public class Parser {
 	}
 
 	private Expr term() {
-		Expr expr = factor();
+		Expr expr = power();
 		while (look.tag() == Tag.MUL) {
 			Token operation = move();
-			expr = new Bin(operation, expr, factor());
+			expr = new Bin(operation, expr, power());
+		}
+		return expr;
+	}
+	
+	private Expr power() {
+		Expr expr = factor();
+		while(look.tag() == Tag.POWER) {
+			Token operation = move();
+			expr = new Power(operation, expr, factor());
 		}
 		return expr;
 	}
