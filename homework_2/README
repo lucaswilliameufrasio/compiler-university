@@ -19,8 +19,9 @@ FACTOR				::= (EXPR) | ID | LIT_INT | LIT_REAL | LIT_BOOL
 Definições Regulares
 LETTER		::= a | b | ... | z | A | B | ... Z | _
 DIGIT		::= 0 | 1 | ... | 9
+SCIENTIFIC  ::= "E" "+" | "E" "-" 
 ID			::= LETTER (LETTER | DIGIT)*
 LIT_INT		::= DIGIT+
-LIT_REAL	::= DIGIT+ . DIGIT+ 
+LIT_REAL	::= DIGIT+ . DIGIT+ (SCIENTIFIC DIGIT+)*
 LIT_BOOL	::= verdadeiro | falso
 TYPE     	::= inteiro | real | booleano

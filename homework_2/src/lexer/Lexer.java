@@ -121,6 +121,18 @@ public class Lexer {
 					num += peek;
 					nextChar();
 				} while ( Character.isDigit(peek) );
+				if (peek == 'E') {
+					num += peek;
+					nextChar();
+					if (peek == '+' || peek == '-') {
+						do {
+							num += peek;
+							nextChar();
+						} while ( Character.isDigit(peek) );
+					} else {
+						break;
+					}
+				}
 				return new Token(Tag.LIT_REAL, num);
 			} else if ( isIdStart(peek)  ) {
 				String id = "";
