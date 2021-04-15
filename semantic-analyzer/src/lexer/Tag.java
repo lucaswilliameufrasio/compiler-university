@@ -3,14 +3,12 @@ package lexer;
 public enum Tag {
 	//Reserved Words
 	PROGRAM("PROGRAM"), BEGIN("BEGIN"), END("END"),
-	INT("INT"), REAL("REAL"), BOOL("BOOL"), READ("READ"),
-	WRITE("WRITE"), IF("IF"), WHILE("WHILE"),
+	INT("INT"), REAL("REAL"), BOOL("BOOL"),
+	WRITE("WRITE"), IF("IF"),
 	//Assign
 	ASSIGN("ASSIGN"),
 	//Arithmetical Operators
-	SUM("SUM"), SUB("SUB"), MUL("MUL"),
-	//Arithmetical Operations
-	POWER("POWER"),
+	SUM("SUM"), SUB("SUB"), MUL("MUL"), 
 	//Logical Operators
 	OR("OR"),
 	//Relational Operators
@@ -19,7 +17,7 @@ public enum Tag {
 	SEMI("SEMI"), DOT("DOT"), LPAREN("LPAREN"), RPAREN("RPAREN"),
 	//Literals and Identifiers
 	LIT_INT("LIT_INT"), LIT_REAL("LIT_REAL"), ID("ID"),
-	TRUE("TRUE"), FALSE("FALSE"), SCIENTIFIC("SCIENTIFIC"),
+	TRUE("TRUE"), FALSE("FALSE"),
 	//Others
 	EOF("EOF"), UNK("UNK"), TEMP("TEMP");
 	

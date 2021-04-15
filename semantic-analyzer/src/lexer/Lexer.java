@@ -26,10 +26,8 @@ public class Lexer {
 		keywords.put("programa", Tag.PROGRAM);
 		keywords.put("inicio", Tag.BEGIN);
 		keywords.put("fim", Tag.END);
-		keywords.put("leia", Tag.READ);
 		keywords.put("escreva", Tag.WRITE);
 		keywords.put("se", Tag.IF);
-		keywords.put("enquanto", Tag.WHILE);
 		keywords.put("verdadeiro", Tag.TRUE);
 		keywords.put("falso", Tag.FALSE);
 		keywords.put("inteiro", Tag.INT);
@@ -45,7 +43,6 @@ public class Lexer {
 		if ( peek == '\n' ) line++;
 		try {
 			peek = (char)reader.read();
-			System.out.println(peek);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -63,10 +60,6 @@ public class Lexer {
 
 	private static boolean isIdStart(int c) {
 		return ( Character.isAlphabetic(c) || c == '_' );
-	}
-	
-	private static boolean isScientificNotationStart(int c) {
-		return ( c == 'E' );
 	}
 
 	private static boolean isIdPart(int c) {
@@ -87,10 +80,6 @@ public class Lexer {
 			return new Token(Tag.SUB, "-");
 		case '*':
 			nextChar();
-			if (peek == '*') {
-				nextChar();
-				return new Token(Tag.POWER, "**");
-			}
 			return new Token(Tag.MUL,"*");
 		case '|':
 			nextChar();
@@ -132,18 +121,6 @@ public class Lexer {
 					num += peek;
 					nextChar();
 				} while ( Character.isDigit(peek) );
-				if (peek == 'E') {
-					num += peek;
-					nextChar();
-					if (peek == '+' || peek == '-') {
-						do {
-							num += peek;
-							nextChar();
-						} while ( Character.isDigit(peek) );
-					} else {
-						break;
-					}
-				}
 				return new Token(Tag.LIT_REAL, num);
 			} else if ( isIdStart(peek)  ) {
 				String id = "";

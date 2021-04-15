@@ -15,4 +15,7 @@ programa soma inicio
   a = 2 * 2 * 2;
   d = 2**3**2;
   escreva(c);
+  
+  real e;
+  e = 1.1E+2;
 fim.
