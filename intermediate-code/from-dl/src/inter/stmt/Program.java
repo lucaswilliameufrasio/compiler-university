@@ -17,4 +17,12 @@ public class Program extends Stmt {
 	public String toString() {
 		return Tag.PROGRAM.toString();
 	}
+	
+	
+	@Override
+	public void gen() {
+		code.emitHead(id);
+		block.gen();
+		code.emitFoot();
+	}
 }
