@@ -120,5 +120,8 @@ public final class Emitter {
 	public void emitConvert(Expr dest, Expr op) {
 		emit(dest + " = " + "sitofp i32 " + op + " to double");
 	}
-
+	
+	public int newLabel() {
+		return ++label;
+	}
 }
