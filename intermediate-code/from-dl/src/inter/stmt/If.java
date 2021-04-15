@@ -24,7 +24,12 @@ public class If extends Stmt {
 
 	@Override
 	public void gen() {
-		// TODO Auto-generated method stub
-		
+		int l1 = code.newLabel();
+		int l2 = code.newLabel();
+		expr.jumping(l1, l2);
+		code.emitLabel(l1);
+		stmt.gen();
+		code.emitBreak(l2);
+		code.emitLabel(l2);
 	}
 }
