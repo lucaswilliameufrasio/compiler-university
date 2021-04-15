@@ -33,30 +33,35 @@ public final class Emitter {
 		emit("ret i32 0");
 		emit("}");
 	}
-	
+
 	public void emitAlloca(Expr var) {
 		emit(var + " = alloca " + codeType(var.type()));
 	}
-	
+
 	public static String codeType(Tag type) {
-		switch(type) {
-		case BOOL: return "i1";
-		case INT: return "i32";
-		case REAL: return "double";
-		default: return "";
+		switch (type) {
+		case BOOL:
+			return "i1";
+		case INT:
+			return "i32";
+		case REAL:
+			return "double";
+		default:
+			return "";
 		}
 	}
-	
-	/*public void emitWrite(Expr id) {
-		String str = "[4 x i8], [4 x i8]* @str_print_int";
-		if ( id.type().isReal() )
-			str = "[7 x i8], [7 x i8]* @str_print_double";
-		Temp tPrint = new Temp(id.type());
-		emit( tPrint + " = call i32 (i8*, ...) "
-				+ "@printf(i8* getelementptr inbounds"
-				+ "(" + str + ", i32 0, i32 0), "
-				+ codeType(id.type()) + " "
-				+ id + ")" );
-	}*/
+
+	public void emitStore(Expr dest, Expr value) {
+		emit("store " + codeType(dest.type()) + " " + value + ", " + codeType(dest.type()) + "* " + dest);
+	}
+
+	/*
+	 * public void emitWrite(Expr id) { String str =
+	 * "[4 x i8], [4 x i8]* @str_print_int"; if ( id.type().isReal() ) str =
+	 * "[7 x i8], [7 x i8]* @str_print_double"; Temp tPrint = new Temp(id.type());
+	 * emit( tPrint + " = call i32 (i8*, ...) " +
+	 * "@printf(i8* getelementptr inbounds" + "(" + str + ", i32 0, i32 0), " +
+	 * codeType(id.type()) + " " + id + ")" ); }
+	 */
 
 }
