@@ -11,6 +11,7 @@ ASSIGN   			::= ID = EXPR
 READ				::= leia(ID)
 WRITE				::= escreva(ID)
 IF					::= se (EXPR) STMT
+WHILE				::= enquanto (EXPR) STMT
 EXPR				::= EXPR "|" REL | REL
 REL					::= REL < ARITH | REL <= ARITH | REL > ARITH | ARITH
 ARITH  				::= ARITH + TERM | ARITH - TERM | TERM
