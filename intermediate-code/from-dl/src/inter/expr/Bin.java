@@ -7,10 +7,10 @@ public class Bin extends Expr {
 	protected Expr expr1;
 	protected Expr expr2;
 
-	public Bin( Token op, Expr e1, Expr e2 ) {
+	public Bin(Token op, Expr e1, Expr e2) {
 		super(op, null);
-		type = maxType( e1.type(), e2.type() );
-		if ( this.type == null ) 
+		type = maxType(e1.type(), e2.type());
+		if (this.type == null)
 			error("tipos incompatíveis");
 		expr1 = e1;
 		expr2 = e2;
@@ -18,10 +18,10 @@ public class Bin extends Expr {
 		addChild(expr2);
 	}
 
-	private static Tag maxType( Tag t1, Tag t2 ) {
-		if ( !t1.isNum() || !t2.isNum() )
+	private static Tag maxType(Tag t1, Tag t2) {
+		if (!t1.isNum() || !t2.isNum())
 			return null;
-		else if ( t1.isReal() || t2.isReal() )
+		else if (t1.isReal() || t2.isReal())
 			return Tag.REAL;
 		else
 			return Tag.INT;
@@ -29,7 +29,10 @@ public class Bin extends Expr {
 
 	@Override
 	public Expr gen() {
-		// TODO Auto-generated method stub
-		return null;
+		Expr e1 = expr1.gen();
+		Expr e2 = expr2.gen();
+		Temp d = new Temp(type);
+		code.emitOperation(d, e1, e2, op.tag());
+		return d;
 	}
 }
