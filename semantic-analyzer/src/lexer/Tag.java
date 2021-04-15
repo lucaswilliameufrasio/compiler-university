@@ -31,4 +31,24 @@ public enum Tag {
 	public String toString() {
 		return name;
 	}
+	
+	public boolean isInt() {
+		return this == Tag.INT;
+	}
+	
+	public boolean isReal() {
+		return this == Tag.REAL;
+	}
+	
+	public boolean isBool() {
+		return this == Tag.BOOL;
+	}
+	
+	public boolean isNum() {
+		return (isInt() || isReal());
+	}
+	
+	public boolean isType() {
+		return isNum() || isBool();
+	}
 }
