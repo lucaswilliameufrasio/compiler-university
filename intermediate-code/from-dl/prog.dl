@@ -5,4 +5,6 @@ programa maior_num inicio
   b = 3;
   se (a > b) escreva(a);
   se (a <= b) escreva(b);
+  b = 10;
+  escreva(b);
 fim.

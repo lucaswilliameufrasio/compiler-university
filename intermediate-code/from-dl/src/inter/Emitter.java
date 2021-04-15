@@ -103,4 +103,8 @@ public final class Emitter {
 		emit(dest + " = " + codeOperation(op, op1.type()) + " " + codeType(op1.type()) + " " + op1 + ", " + op2);
 	}
 
+	public void emitConvert(Expr dest, Expr op) {
+		emit(dest + " = " + "sitofp i32 " + op + " to double");
+	}
+
 }
