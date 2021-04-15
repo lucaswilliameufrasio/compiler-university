@@ -73,4 +73,34 @@ public final class Emitter {
 				+ codeType(id.type()) + " " + id + ")");
 	}
 
+	public static String codeOperation(Tag op, Tag type) {
+		if (type.isReal()) {
+			switch (op) {
+			case SUM:
+				return "fadd";
+			case SUB:
+				return "fsub";
+			case MUL:
+				return "fmul";
+			default:
+				return null;
+			}
+		} else {
+			switch (op) {
+			case SUM:
+				return "add";
+			case SUB:
+				return "sub";
+			case MUL:
+				return "mul";
+			default:
+				return null;
+			}
+		}
+	}
+
+	public void emitOperation(Expr dest, Expr op1, Expr op2, Tag op) {
+		emit(dest + " = " + codeOperation(op, op1.type()) + " " + codeType(op1.type()) + " " + op1 + ", " + op2);
+	}
+
 }
