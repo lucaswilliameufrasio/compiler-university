@@ -1,7 +1,6 @@
 programa teste inicio
-  inteiro d;
+  real d;
   leia(d);
   escreva(d);
-  inteiro a;
-  a = 10;
+
 fim.

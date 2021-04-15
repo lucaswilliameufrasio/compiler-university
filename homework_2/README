@@ -5,9 +5,10 @@ Gramática
 PROGRAM				::= programa ID BLOCK
 BLOCK				::= inicio STMTS fim
 STMTS				::= STMT; STMTS | ε
-STMT				::= BLOCK | DECL | ASSIGN | WRITE | IF
+STMT				::= BLOCK | DECL | ASSIGN | READ | WRITE | IF | WHILE
 DECL     			::= TYPE ID
 ASSIGN   			::= ID = EXPR
+READ				::= leia(ID)
 WRITE				::= escreva(ID)
 IF					::= se (EXPR) STMT
 EXPR				::= EXPR "|" REL | REL

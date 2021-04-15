@@ -93,8 +93,8 @@ public final class Emitter {
 		if (id.type().isReal())
 			str = "[4 x i8], [4 x i8]* @str_read_double";
 		Temp tPrint = new Temp(id.type());
-		emit(tPrint + " = call i32 (i8*, ...) @__isoc99_scanf(i8* getelementptr inbounds" + "(" + str + ", i64 0, i64 0), " + codeType(id.type())
-				+ " " + id + ")");
+		emit(tPrint + " = call i32 (i8*, ...) @__isoc99_scanf(i8* getelementptr inbounds" + "(" + str + ", i32 0, i32 0), " + codeType(id.type())
+				+ "* " + id + ")");
 	}
 
 	public static String codeType(Tag type) {
