@@ -16,7 +16,8 @@ public class Id extends Expr {
 
 	@Override
 	public Expr gen() {
-		// TODO Auto-generated method stub
-		return null;
+		Temp d = new Temp(type);
+		code.emitLoad(d, this);
+		return d;
 	}
 }
