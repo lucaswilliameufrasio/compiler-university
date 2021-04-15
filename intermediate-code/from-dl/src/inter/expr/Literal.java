@@ -25,4 +25,9 @@ public class Literal extends Expr {
 	public Expr gen() {
 		return this;
 	}
+	
+	@Override
+	public void jumping(int t, int f) {
+		code.emitBreak(this, t, f);
+	}
 }
