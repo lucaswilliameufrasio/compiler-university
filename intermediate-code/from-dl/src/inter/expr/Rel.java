@@ -34,4 +34,10 @@ public class Rel extends Expr {
 		code.emitOperation(d, op1, op2, op.tag());
 		return d;
 	}
+
+	@Override
+	public void jumping(int t, int f) {
+		Expr cond = this.gen();
+		code.emitBreak(cond, t, f);
+	}
 }
