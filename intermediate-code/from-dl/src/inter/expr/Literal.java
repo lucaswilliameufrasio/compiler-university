@@ -23,7 +23,6 @@ public class Literal extends Expr {
 
 	@Override
 	public Expr gen() {
-		// TODO Auto-generated method stub
-		return null;
+		return this;
 	}
 }
