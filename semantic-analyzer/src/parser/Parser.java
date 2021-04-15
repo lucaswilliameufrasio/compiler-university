@@ -122,8 +122,7 @@ public class Parser {
 	private Stmt writeStmt() {
 		move();
 		match(Tag.LPAREN);
-		Token tok = match(Tag.ID);
-		Id id = new Id(tok, null);
+		Id id = findId(match(Tag.ID));
 		match(Tag.RPAREN);
 		return new Write(id);
 	}
