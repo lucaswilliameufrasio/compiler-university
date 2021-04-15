@@ -21,4 +21,10 @@ public class If extends Stmt {
 	public String toString() {
 		return Tag.IF.toString();
 	}
+
+	@Override
+	public void gen() {
+		// TODO Auto-generated method stub
+		
+	}
 }

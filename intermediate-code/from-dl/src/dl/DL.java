@@ -15,6 +15,7 @@ public class DL {
 
 		//Imprimindo a árvore sintática
 		System.out.println(p.parseTree());
+		System.out.println(p.code());
 		System.out.println("finalizado");
 	}
 }

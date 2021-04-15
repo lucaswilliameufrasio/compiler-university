@@ -15,4 +15,10 @@ public class Write extends Stmt {
 	public String toString() {
 		return Tag.WRITE.toString();
 	}
+
+	@Override
+	public void gen() {
+		// TODO Auto-generated method stub
+		
+	}
 }

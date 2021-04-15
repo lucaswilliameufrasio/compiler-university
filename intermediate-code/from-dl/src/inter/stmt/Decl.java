@@ -14,4 +14,10 @@ public class Decl extends Stmt {
 	public String toString() {
 		return "DECL";
 	}
+
+	@Override
+	public void gen() {
+		// TODO Auto-generated method stub
+		
+	}
 }

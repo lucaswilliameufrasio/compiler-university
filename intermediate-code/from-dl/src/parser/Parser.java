@@ -69,6 +69,11 @@ public class Parser {
 	public void parse() {
 		Stmt p = program();
 		root = p;
+		p.gen();
+	}
+	
+	public String code() {
+		return Node.code();
 	}
 
 	private Stmt program() {

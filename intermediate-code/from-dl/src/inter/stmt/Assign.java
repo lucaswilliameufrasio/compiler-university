@@ -34,4 +34,10 @@ public class Assign extends Stmt {
 	public String toString() {
 		return Tag.ASSIGN.toString();
 	}
+
+	@Override
+	public void gen() {
+		// TODO Auto-generated method stub
+		
+	}
 }
