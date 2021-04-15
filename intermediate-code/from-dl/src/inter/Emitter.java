@@ -82,6 +82,12 @@ public final class Emitter {
 				return "fsub";
 			case MUL:
 				return "fmul";
+			case LT:
+				return "fcmp olt";
+			case LE:
+				return "fcmp ole";
+			case GT:
+				return "fcmp ogt";
 			default:
 				return null;
 			}
@@ -93,6 +99,12 @@ public final class Emitter {
 				return "sub";
 			case MUL:
 				return "mul";
+			case LT:
+				return "cmp slt";
+			case LE:
+				return "cmp sle";
+			case GT:
+				return "cmp sgt";
 			default:
 				return null;
 			}
