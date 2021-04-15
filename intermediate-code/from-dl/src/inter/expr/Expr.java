@@ -35,6 +35,9 @@ public abstract class Expr extends Node {
 		return type;
 	}
 
+	public void jumping(int t, int f) {
+	}
+
 	@Override
 	public String toString() {
 		return op.tag().toString();
