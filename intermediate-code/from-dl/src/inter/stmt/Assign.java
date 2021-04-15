@@ -2,6 +2,7 @@ package inter.stmt;
 
 import inter.expr.Expr;
 import inter.expr.Id;
+import inter.expr.Temp;
 import lexer.Tag;
 
 public class Assign extends Stmt {
@@ -36,6 +37,12 @@ public class Assign extends Stmt {
 	@Override
 	public void gen() {
 		Expr e = expr.gen();
-		code.emitStore(id, e);
+		if (id.type() == e.type())
+			code.emitStore(id, e);
+		else {
+			Temp t = new Temp(id.type());
+			code.emitConvert(t, e);
+			code.emitStore(id, t);
+		}
 	}
 }
