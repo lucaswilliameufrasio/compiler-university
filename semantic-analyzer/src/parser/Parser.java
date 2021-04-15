@@ -59,6 +59,13 @@ public class Parser {
 		root = p;
 	}
 
+	private Id findId(Token tokenId) {
+		Id id = table.get(tokenId.lexeme());
+		if (id == null)
+			error("a variável '" + tokenId.lexeme() + "' não foi declarada");
+		return id;
+	}
+
 	private Stmt program() {
 		match(Tag.PROGRAM);
 		Token tokId = match(Tag.ID);
@@ -122,8 +129,7 @@ public class Parser {
 	}
 
 	private Stmt assign() {
-		Token tok = match(Tag.ID);
-		Id id = new Id(tok, null);
+		Id id = findId(match(Tag.ID));
 		match(Tag.ASSIGN);
 		Expr e = expr();
 		return new Assign(id, e);
