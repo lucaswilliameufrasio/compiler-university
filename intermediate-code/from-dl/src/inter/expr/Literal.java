@@ -20,4 +20,10 @@ public class Literal extends Expr {
 			return op.lexeme();
 		}
 	}
+
+	@Override
+	public Expr gen() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

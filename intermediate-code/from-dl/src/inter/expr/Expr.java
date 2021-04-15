@@ -12,6 +12,8 @@ public abstract class Expr extends Node {
 		this.op = op;
 		this.type = type;
 	}
+	
+	public abstract Expr gen();
 
 	public Token op() {
 		return op;

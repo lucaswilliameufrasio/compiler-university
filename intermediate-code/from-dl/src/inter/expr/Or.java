@@ -19,4 +19,10 @@ public class Or extends Expr {
 		addChild(expr1);
 		addChild(expr2);
 	}
+
+	@Override
+	public Expr gen() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

@@ -26,4 +26,10 @@ public class Bin extends Expr {
 		else
 			return Tag.INT;
 	}
+
+	@Override
+	public Expr gen() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
