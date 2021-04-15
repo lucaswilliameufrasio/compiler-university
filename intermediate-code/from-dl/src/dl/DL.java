@@ -1,6 +1,7 @@
 package dl;
 
 import java.io.File;
+import java.io.PrintWriter;
 
 import lexer.Lexer;
 import parser.Parser;
@@ -15,7 +16,16 @@ public class DL {
 
 		//Imprimindo a árvore sintática
 		System.out.println(p.parseTree());
-		System.out.println(p.code());
+		
+		try {
+			PrintWriter pw =
+					new PrintWriter("prog.ll");
+			pw.write(p.code());
+			pw.close();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
 		System.out.println("finalizado");
 	}
 }
