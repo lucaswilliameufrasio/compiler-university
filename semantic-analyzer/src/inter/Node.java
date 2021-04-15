@@ -2,6 +2,8 @@ package inter;
 
 import java.util.LinkedList;
 
+import lexer.Lexer;
+
 public abstract class Node {
 	private LinkedList<Node> children = new LinkedList<Node>();
 
@@ -25,5 +27,11 @@ public abstract class Node {
 
 	protected LinkedList<Node> children() {
 		return children;
+	}
+	
+	public static void error(String s) {
+		System.err.println("linha "
+				+ Lexer.line() + ": " + s);
+		System.exit(0);
 	}
 }
