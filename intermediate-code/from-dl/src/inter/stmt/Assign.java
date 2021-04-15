@@ -10,16 +10,14 @@ public class Assign extends Stmt {
 	protected Expr expr;
 
 	public Assign(Id i, Expr e) {
-		if ( check(i.type(), e.type() ) == null )
-			error("valor de expressão "
-					+ "incompatível com o "
-					+ "tipo da variável");
+		if (check(i.type(), e.type()) == null)
+			error("valor de expressão " + "incompatível com o " + "tipo da variável");
 		id = i;
 		expr = e;
 		addChild(id);
 		addChild(expr);
 	}
-	
+
 	private static Tag check(Tag t1, Tag t2) {
 		if (t1.isReal() && !t2.isBool())
 			return Tag.REAL;
@@ -37,7 +35,7 @@ public class Assign extends Stmt {
 
 	@Override
 	public void gen() {
-		// TODO Auto-generated method stub
-		
+		Expr e = expr.gen();
+		code.emitStore(id, e);
 	}
 }
