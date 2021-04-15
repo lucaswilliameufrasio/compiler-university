@@ -20,4 +20,10 @@ public class Id extends Expr {
 		code.emitLoad(d, this);
 		return d;
 	}
+	
+	@Override
+	public void jumping(int t, int f) {
+		Expr e = this.gen();
+		code.emitBreak(e, t, f);
+	}
 }
