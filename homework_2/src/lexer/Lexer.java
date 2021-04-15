@@ -26,6 +26,7 @@ public class Lexer {
 		keywords.put("programa", Tag.PROGRAM);
 		keywords.put("inicio", Tag.BEGIN);
 		keywords.put("fim", Tag.END);
+		keywords.put("leia", Tag.READ);
 		keywords.put("escreva", Tag.WRITE);
 		keywords.put("se", Tag.IF);
 		keywords.put("verdadeiro", Tag.TRUE);

@@ -3,7 +3,7 @@ package lexer;
 public enum Tag {
 	//Reserved Words
 	PROGRAM("PROGRAM"), BEGIN("BEGIN"), END("END"),
-	INT("INT"), REAL("REAL"), BOOL("BOOL"),
+	INT("INT"), REAL("REAL"), BOOL("BOOL"), READ("READ"),
 	WRITE("WRITE"), IF("IF"),
 	//Assign
 	ASSIGN("ASSIGN"),
