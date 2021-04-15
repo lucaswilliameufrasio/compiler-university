@@ -8,9 +8,11 @@ import lexer.Token;
 
 public final class Emitter {
 	private StringBuffer code;
+	private int label;
 
 	public Emitter() {
 		code = new StringBuffer();
+		label = 0;
 	}
 
 	public void emit(String s) {
