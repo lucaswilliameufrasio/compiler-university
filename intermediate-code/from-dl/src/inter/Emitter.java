@@ -124,4 +124,8 @@ public final class Emitter {
 	public int newLabel() {
 		return ++label;
 	}
+	
+	public void emitLabel(int l) {
+		emit("L" + l + ":");
+	}
 }
