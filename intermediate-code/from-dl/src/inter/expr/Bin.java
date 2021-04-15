@@ -31,8 +31,10 @@ public class Bin extends Expr {
 	public Expr gen() {
 		Expr e1 = expr1.gen();
 		Expr e2 = expr2.gen();
+		Expr op1 = widen(e1, e2.type());
+		Expr op2 = widen(e2, e1.type());
 		Temp d = new Temp(type);
-		code.emitOperation(d, e1, e2, op.tag());
+		code.emitOperation(d, op1, op2, op.tag());
 		return d;
 	}
 }
