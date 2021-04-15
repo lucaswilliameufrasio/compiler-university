@@ -59,6 +59,10 @@ public final class Emitter {
 	public static final Literal LIT_ZERO_INT = new Literal(new Token(Tag.LIT_INT, "0"), Tag.INT);
 	public static final Literal LIT_ZERO_REAL = new Literal(new Token(Tag.LIT_REAL, "0.0"), Tag.REAL);
 
+	public void emitLoad(Expr dest, Expr value) {
+		emit(dest + " = load" + codeType(dest.type()) + ", " + codeType(dest.type()) + "* " + value);
+	}
+
 	/*
 	 * public void emitWrite(Expr id) { String str =
 	 * "[4 x i8], [4 x i8]* @str_print_int"; if ( id.type().isReal() ) str =
