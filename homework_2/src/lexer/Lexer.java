@@ -29,6 +29,7 @@ public class Lexer {
 		keywords.put("leia", Tag.READ);
 		keywords.put("escreva", Tag.WRITE);
 		keywords.put("se", Tag.IF);
+		keywords.put("enquanto", Tag.WHILE);
 		keywords.put("verdadeiro", Tag.TRUE);
 		keywords.put("falso", Tag.FALSE);
 		keywords.put("inteiro", Tag.INT);
