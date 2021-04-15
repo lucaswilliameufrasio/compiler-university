@@ -7,16 +7,14 @@ public class Rel extends Expr {
 	protected Expr expr1;
 	protected Expr expr2;
 
-	public Rel(Token op, Expr e1, Expr e2 ) {
+	public Rel(Token op, Expr e1, Expr e2) {
 		super(op, Tag.BOOL);
-		switch (op.tag() ) {
-		case LT: case LE: case GT:
-			if (!e1.type().isNum() ||
-				!e2.type().isNum())
-				error("O operador relacional " 
-						+ op.lexeme() 
-						+ " só deve ser aplicado"
-						+ " a tipos numéricos");
+		switch (op.tag()) {
+		case LT:
+		case LE:
+		case GT:
+			if (!e1.type().isNum() || !e2.type().isNum())
+				error("O operador relacional " + op.lexeme() + " só deve ser aplicado" + " a tipos numéricos");
 			break;
 		default:
 		}
@@ -28,7 +26,12 @@ public class Rel extends Expr {
 
 	@Override
 	public Expr gen() {
-		// TODO Auto-generated method stub
-		return null;
+		Expr e1 = expr1.gen();
+		Expr e2 = expr2.gen();
+		Expr op1 = widen(e1, e2.type());
+		Expr op2 = widen(e2, e1.type());
+		Temp d = new Temp(Tag.BOOL);
+		code.emitOperation(d, op1, op2, op.tag());
+		return d;
 	}
 }
