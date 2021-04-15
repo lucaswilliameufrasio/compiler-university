@@ -1,5 +1,7 @@
 package inter;
 
+import inter.expr.Expr;
+import lexer.Tag;
 import lexer.Token;
 
 public final class Emitter {
@@ -30,6 +32,19 @@ public final class Emitter {
 	public void emitFoot() {
 		emit("ret i32 0");
 		emit("}");
+	}
+	
+	public void emitAlloca(Expr var) {
+		emit(var + " = alloca " + codeType(var.type()));
+	}
+	
+	public static String codeType(Tag type) {
+		switch(type) {
+		case BOOL: return "i1";
+		case INT: return "i32";
+		case REAL: return "double";
+		default: return "";
+		}
 	}
 	
 	/*public void emitWrite(Expr id) {
