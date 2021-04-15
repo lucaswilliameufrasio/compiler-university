@@ -199,8 +199,7 @@ public class Parser {
 			e = new Literal(move(), Tag.BOOL);
 			break;
 		case ID:
-			Token tok = match(Tag.ID);
-			e = new Id(tok, null);
+			e = findId(match(Tag.ID));
 			break;
 		default:
 			error("expressão inválida");
