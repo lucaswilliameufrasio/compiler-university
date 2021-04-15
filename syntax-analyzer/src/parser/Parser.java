@@ -47,7 +47,6 @@ public class Parser {
 	}
 
 	private Token match(Tag t) {
-		System.out.println(look.tag());
 		if (look.tag() == t)
 			return move();
 		error("Símbolo inesperado");

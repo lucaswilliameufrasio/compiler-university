@@ -45,7 +45,6 @@ public class Lexer {
 		if ( peek == '\n' ) line++;
 		try {
 			peek = (char)reader.read();
-			System.out.println(peek);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
