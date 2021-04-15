@@ -120,12 +120,20 @@ public final class Emitter {
 	public void emitConvert(Expr dest, Expr op) {
 		emit(dest + " = " + "sitofp i32 " + op + " to double");
 	}
-	
+
 	public int newLabel() {
 		return ++label;
 	}
-	
+
 	public void emitLabel(int l) {
 		emit("L" + l + ":");
+	}
+
+	public void emitBreak(int l) {
+		emit("br label %L" + l);
+	}
+
+	public void emitBreak(Expr cond, int lt, int lf) {
+		emit("br i1 " + cond + ", label %L" + lt + ", label %L" + lf);
 	}
 }
