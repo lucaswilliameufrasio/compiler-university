@@ -1,6 +1,7 @@
 package inter;
 
 import inter.expr.Expr;
+import inter.expr.Literal;
 import lexer.Tag;
 import lexer.Token;
 
@@ -54,6 +55,9 @@ public final class Emitter {
 	public void emitStore(Expr dest, Expr value) {
 		emit("store " + codeType(dest.type()) + " " + value + ", " + codeType(dest.type()) + "* " + dest);
 	}
+
+	public static final Literal LIT_ZERO_INT = new Literal(new Token(Tag.LIT_INT, "0"), Tag.INT);
+	public static final Literal LIT_ZERO_REAL = new Literal(new Token(Tag.LIT_REAL, "0.0"), Tag.REAL);
 
 	/*
 	 * public void emitWrite(Expr id) { String str =
