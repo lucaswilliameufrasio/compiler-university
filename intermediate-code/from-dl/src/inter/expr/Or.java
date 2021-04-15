@@ -25,4 +25,12 @@ public class Or extends Expr {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	@Override
+	public void jumping(int t, int f) {
+		int label = code.newLabel();
+		expr1.jumping(t, label);
+		code.emitLabel(label);
+		expr2.jumping(t, f);
+	}
 }
