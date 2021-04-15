@@ -1,5 +1,6 @@
 package inter.stmt;
 
+import inter.expr.Expr;
 import inter.expr.Id;
 import lexer.Tag;
 
@@ -18,7 +19,7 @@ public class Write extends Stmt {
 
 	@Override
 	public void gen() {
-		// TODO Auto-generated method stub
-		
+		Expr e = id.gen();
+		code.emitWrite(e);
 	}
 }

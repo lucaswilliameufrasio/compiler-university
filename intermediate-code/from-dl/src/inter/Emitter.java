@@ -2,6 +2,7 @@ package inter;
 
 import inter.expr.Expr;
 import inter.expr.Literal;
+import inter.expr.Temp;
 import lexer.Tag;
 import lexer.Token;
 
@@ -63,13 +64,13 @@ public final class Emitter {
 		emit(dest + " = load" + codeType(dest.type()) + ", " + codeType(dest.type()) + "* " + value);
 	}
 
-	/*
-	 * public void emitWrite(Expr id) { String str =
-	 * "[4 x i8], [4 x i8]* @str_print_int"; if ( id.type().isReal() ) str =
-	 * "[7 x i8], [7 x i8]* @str_print_double"; Temp tPrint = new Temp(id.type());
-	 * emit( tPrint + " = call i32 (i8*, ...) " +
-	 * "@printf(i8* getelementptr inbounds" + "(" + str + ", i32 0, i32 0), " +
-	 * codeType(id.type()) + " " + id + ")" ); }
-	 */
+	public void emitWrite(Expr id) {
+		String str = "[4 x i8], [4 x i8]* @str_print_int";
+		if (id.type().isReal())
+			str = "[7 x i8], [7 x i8]* @str_print_double";
+		Temp tPrint = new Temp(id.type());
+		emit(tPrint + " = call i32 (i8*, ...) " + "@printf(i8* getelementptr inbounds" + "(" + str + ", i32 0, i32 0), "
+				+ codeType(id.type()) + " " + id + ")");
+	}
 
 }
