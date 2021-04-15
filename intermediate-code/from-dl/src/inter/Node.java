@@ -6,6 +6,12 @@ import lexer.Lexer;
 
 public abstract class Node {
 	private LinkedList<Node> children = new LinkedList<Node>();
+	
+	protected static Emitter code = new Emitter();
+	
+	public static String code() {
+		return code.toString();
+	}
 
 	public static void error(String s) {
 		System.err.println("linha " 
