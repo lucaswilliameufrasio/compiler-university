@@ -13,5 +13,9 @@ store i32 3, i32* %b
 store i32 10, i32* %b
 %1 = load i32, i32* %b
 %2 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds([4 x i8], [4 x i8]* @str_print_int, i32 0, i32 0), i32 %1)
+%c = alloca i1
+store i1 0, i1* %c
+%3 = icmp slt i32 10, 9
+store i1 %3, i1* %c
 ret i32 0
 }

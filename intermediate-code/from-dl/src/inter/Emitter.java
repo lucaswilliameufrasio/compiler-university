@@ -100,11 +100,11 @@ public final class Emitter {
 			case MUL:
 				return "mul";
 			case LT:
-				return "cmp slt";
+				return "icmp slt";
 			case LE:
-				return "cmp sle";
+				return "icmp sle";
 			case GT:
-				return "cmp sgt";
+				return "icmp sgt";
 			default:
 				return null;
 			}

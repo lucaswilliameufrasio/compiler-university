@@ -7,4 +7,6 @@ programa maior_num inicio
   se (a <= b) escreva(b);
   b = 10;
   escreva(b);
+  booleano c;
+  c = (10 < 9);
 fim.
