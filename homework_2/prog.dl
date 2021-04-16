@@ -1,17 +1,21 @@
-programa teste inicio
-  inteiro a;
+programa soma inicio
+  inteiro a; 
   inteiro b;
-  real c;
-  a = 10;
-  b = 0;
-  
-  enquanto(a > b)
-  	b = b + 1;
-  	
-  c = 2**3**2;
-  	escreva(c);
-  	
+  inteiro c;
   real d;
-  d = 9.0E+1;
+  a = 5;
+  b = 3;
+  c = a + b;
+  
+  enquanto (a > b)
+  	b = b + 1;
+  
+  leia(d);
+  
+  a = 2 * 2 * 2;
+  d = 2**3**2;
   escreva(d);
+  
+  real e;
+  e = 1.1E+2;
 fim.

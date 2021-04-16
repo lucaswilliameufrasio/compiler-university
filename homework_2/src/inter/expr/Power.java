@@ -26,11 +26,11 @@ public class Power extends Expr {
 		else
 			return Tag.INT;
 	}
-	
+
 	private static Expr convertToReal(Expr e, Tag type) {
-		if ( e.type().isReal() )
+		if (e.type().isReal())
 			return e;
-		else if ( e.type().isInt() ) {
+		else if (e.type().isInt()) {
 			Temp t = new Temp(Tag.REAL);
 			code.emitConvert(t, e);
 			return t;
@@ -43,7 +43,7 @@ public class Power extends Expr {
 	public Expr gen() {
 		Expr e1 = expr1.gen();
 		Expr e2 = expr2.gen();
-		Expr op1 = convertToReal(e1, e1.type());
+		Expr op1 = convertToReal(e1, e2.type());
 		Expr op2 = convertToReal(e2, e1.type());
 		Temp d = new Temp(Tag.REAL);
 		code.emitPower(d, op1, op2);

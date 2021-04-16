@@ -64,19 +64,7 @@ public final class Emitter {
 
 	// %3 = call double @pow(double 2.000000e+00, double 2.000000e+00)
 	public void emitPower(Expr dest, Expr op1, Expr op2) {
-
-		if (op1.toString().startsWith("%") && (op2.type().isInt())) {
-			emit(dest + " = call double @pow(double " + op1 + ", double " + op2 + ".0)");
-		} else if (op2.toString().startsWith("%") && (op1.type().isInt() || op2.type().isInt())) {
-			emit(dest + " = call double @pow(double " + op1 + ".0, double " + op2 + ")");
-		} else if ((!op1.toString().startsWith("%") || !op2.toString().startsWith("%"))
-				&& (op1.type().isInt() && op2.type().isInt())) {
-			emit(dest + " = call double @pow(double " + op1 + ".0, double " + op2 + ".0)");
-		} else if (!op1.toString().startsWith("%") && (op1.type().isInt())) {
-			emit(dest + " = call double @pow(double " + op1 + ".0, double " + op2 + ")");
-		} else {
-			emit(dest + " = call double @pow(double " + op1 + ", double " + op2 + ")");
-		}
+		emit(dest + " = call double @pow(double " + op1 + ", double " + op2 + ")");
 	}
 
 	// %26 = sitofp i32 1 to double
