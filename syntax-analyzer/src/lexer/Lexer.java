@@ -63,10 +63,6 @@ public class Lexer {
 	private static boolean isIdStart(int c) {
 		return ( Character.isAlphabetic(c) || c == '_' );
 	}
-	
-	private static boolean isScientificNotationStart(int c) {
-		return ( c == 'E' );
-	}
 
 	private static boolean isIdPart(int c) {
 		return (isIdStart(c) || Character.isDigit(c));
