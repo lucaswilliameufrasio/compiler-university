@@ -1,5 +1,5 @@
 ;LLVM version 3.8.0 (http://llvm.org/)
-;program soma
+;program equipe2
 declare i32 @printf(i8*, ...) nounwind
 declare dso_local double @pow(double, double)
 declare dso_local i32 @__isoc99_scanf(i8*, ...) #1
