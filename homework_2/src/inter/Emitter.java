@@ -62,6 +62,23 @@ public final class Emitter {
 		emit(dest + " = " + codeOperation(op, op1.type()) + " " + codeType(op1.type()) + " " + op1 + ", " + op2);
 	}
 
+	// %3 = call double @pow(double 2.000000e+00, double 2.000000e+00)
+	public void emitPower(Expr dest, Expr op1, Expr op2) {
+
+		if (op1.toString().startsWith("%") && (op2.type().isInt())) {
+			emit(dest + " = call double @pow(double " + op1 + ", double " + op2 + ".0)");
+		} else if (op2.toString().startsWith("%") && (op1.type().isInt() || op2.type().isInt())) {
+			emit(dest + " = call double @pow(double " + op1 + ".0, double " + op2 + ")");
+		} else if ((!op1.toString().startsWith("%") || !op2.toString().startsWith("%"))
+				&& (op1.type().isInt() && op2.type().isInt())) {
+			emit(dest + " = call double @pow(double " + op1 + ".0, double " + op2 + ".0)");
+		} else if (!op1.toString().startsWith("%") && (op1.type().isInt())) {
+			emit(dest + " = call double @pow(double " + op1 + ".0, double " + op2 + ")");
+		} else {
+			emit(dest + " = call double @pow(double " + op1 + ", double " + op2 + ")");
+		}
+	}
+
 	// %26 = sitofp i32 1 to double
 	public void emitConvert(Expr dest, Expr op) {
 		emit(dest + " = " + "sitofp i32 " + op + " to double");
@@ -93,8 +110,8 @@ public final class Emitter {
 		if (id.type().isReal())
 			str = "[4 x i8], [4 x i8]* @str_read_double";
 		Temp tPrint = new Temp(id.type());
-		emit(tPrint + " = call i32 (i8*, ...) @__isoc99_scanf(i8* getelementptr inbounds" + "(" + str + ", i32 0, i32 0), " + codeType(id.type())
-				+ "* " + id + ")");
+		emit(tPrint + " = call i32 (i8*, ...) @__isoc99_scanf(i8* getelementptr inbounds" + "(" + str
+				+ ", i32 0, i32 0), " + codeType(id.type()) + "* " + id + ")");
 	}
 
 	public static String codeType(Tag type) {
@@ -152,6 +169,7 @@ public final class Emitter {
 		emit(";LLVM version 3.8.0 (http://llvm.org/)");
 		emit(";program " + name.lexeme());
 		emit("declare i32 @printf(i8*, ...) nounwind");
+		emit("declare dso_local double @pow(double, double)");
 		emit("declare dso_local i32 @__isoc99_scanf(i8*, ...) #1");
 		emit("@str_print_int = private unnamed_addr constant [4 x i8] c\"%d\\0A\\00\", align 1");
 		emit("@str_print_double = private unnamed_addr constant [7 x i8] c\"%.2lf\\0A\\00\", align 1");

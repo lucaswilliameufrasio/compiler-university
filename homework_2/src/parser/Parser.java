@@ -2,6 +2,7 @@ package parser;
 
 import java.util.Hashtable;
 
+import inter.expr.Power;
 import inter.Node;
 import inter.expr.Bin;
 import inter.expr.Expr;
@@ -199,12 +200,21 @@ public class Parser {
 	}
 
 	private Expr term() {
-		Expr e = factor();
+		Expr expr = power();
 		while (look.tag() == Tag.MUL) {
-			Token op = move();
-			e = new Bin(op, e, factor());
+			Token operation = move();
+			expr = new Bin(operation, expr, power());
 		}
-		return e;
+		return expr;
+	}
+
+	private Expr power() {
+		Expr expr = factor();
+		while (look.tag() == Tag.POWER) {
+			Token operation = move();
+			expr = new Power(operation, expr, factor());
+		}
+		return expr;
 	}
 
 	private Expr factor() {

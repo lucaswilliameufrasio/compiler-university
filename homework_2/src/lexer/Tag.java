@@ -9,6 +9,8 @@ public enum Tag {
 	ASSIGN("ASSIGN"),
 	//Arithmetical Operators
 	SUM("SUM"), SUB("SUB"), MUL("MUL"), 
+	//Arithmetical Operations
+	POWER("POWER"),
 	//Logical Operators
 	OR("OR"),
 	//Relational Operators

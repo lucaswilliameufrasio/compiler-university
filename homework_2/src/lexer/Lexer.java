@@ -82,6 +82,10 @@ public class Lexer {
 			return new Token(Tag.SUB, "-");
 		case '*':
 			nextChar();
+			if (peek == '*') {
+				nextChar();
+				return new Token(Tag.POWER, "**");
+			}
 			return new Token(Tag.MUL,"*");
 		case '|':
 			nextChar();
